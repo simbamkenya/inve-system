@@ -1,7 +1,10 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function Index(props) {
+  const categories = useSelector((state) => state.category);
+  console.log("cat", categories);
   return (
     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div className="p-2 bg-red-100">
