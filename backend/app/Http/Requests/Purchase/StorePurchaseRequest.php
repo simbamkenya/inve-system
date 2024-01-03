@@ -27,11 +27,7 @@ class StorePurchaseRequest extends FormRequest
             //
             'supplier_id' => 'required',
             'date' => 'required|string',
-            'purchase_no' => '',
-            'status' => 'required',
             'total_amount' => 'required|numeric',
-            'created_by' => '',
-            'updated_by' => ''
         ];
     }
 

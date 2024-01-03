@@ -8,7 +8,7 @@ import { FaShoppingBag } from "react-icons/fa";
 import Index from "../pages/Products/Index";
 import { Link, Outlet } from "react-router-dom";
 
-function DashboardLayout(props) {
+function DashboardLayout({ children }) {
   const [isSidebarOpen, setSidebaOpen] = useState(false);
   return (
     <section className="min-h-screen bg-gray-50">
@@ -58,6 +58,25 @@ function DashboardLayout(props) {
               <path d="M4 9a1 1 0 011-1 7 7 0 017 7 1 1 0 11-2 0 5 5 0 00-5-5 1 1 0 01-1-1zM3 15a2 2 0 114 0 2 2 0 01-4 0z" />
             </svg>
             <span>Products</span>
+          </Link>
+          <Link
+            class="flex items-center px-4 py-3 transition cursor-pointer group hover:bg-gray-800 hover:text-gray-200"
+            to="/categories"
+          >
+            <svg
+              class="shrink-0 w-5 h-5 mr-2 text-gray-400 transition group-hover:text-gray-300"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5 5a3 3 0 015-2.236A3 3 0 0114.83 6H16a2 2 0 110 4h-5V9a1 1 0 10-2 0v1H4a2 2 0 110-4h1.17C5.06 5.687 5 5.35 5 5zm4 1V5a1 1 0 10-1 1h1zm3 0a1 1 0 10-1-1v1h1z"
+                clip-rule="evenodd"
+              />
+              <path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z" />
+            </svg>
+            <span>Categories</span>
           </Link>
           <Link
             class="flex items-center px-4 py-3 text-gray-200 transition bg-gray-800 cursor-pointer group hover:bg-gray-800 hover:text-gray-200"
@@ -207,25 +226,6 @@ function DashboardLayout(props) {
               </a>{" "}
             </div>{" "}
           </div>{" "}
-          <Link
-            class="flex items-center px-4 py-3 transition cursor-pointer group hover:bg-gray-800 hover:text-gray-200"
-            to="/categories"
-          >
-            <svg
-              class="shrink-0 w-5 h-5 mr-2 text-gray-400 transition group-hover:text-gray-300"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M5 5a3 3 0 015-2.236A3 3 0 0114.83 6H16a2 2 0 110 4h-5V9a1 1 0 10-2 0v1H4a2 2 0 110-4h1.17C5.06 5.687 5 5.35 5 5zm4 1V5a1 1 0 10-1 1h1zm3 0a1 1 0 10-1-1v1h1z"
-                clip-rule="evenodd"
-              />
-              <path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z" />
-            </svg>
-            <span>Categories</span>
-          </Link>
           <a
             class="flex items-center px-4 py-3 transition cursor-pointer group hover:bg-gray-800 hover:text-gray-200"
             href="#"
@@ -306,99 +306,7 @@ function DashboardLayout(props) {
 
         <div class="p-4">
           {/* <!-- Add content here, remove div below --> */}
-          <div class="-mt-2 border-2  rounded h-96">
-            <div class="grid grid-cols-1 gap-4 px-4 mt-8 sm:grid-cols-4 sm:px-8">
-              <div class="flex items-center bg-white border rounded-sm overflow-hidden shadow">
-                <div class="p-4 bg-green-400">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-12 w-12 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-                    ></path>
-                  </svg>
-                </div>
-                <div class="px-4 text-gray-700">
-                  <h3 class="text-sm tracking-wider">Total Products</h3>
-                  <p class="text-3xl">12,768</p>
-                </div>
-              </div>
-              <div class="flex items-center bg-white border rounded-sm overflow-hidden shadow">
-                <div class="p-4 bg-blue-400">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-12 w-12 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2"
-                    ></path>
-                  </svg>
-                </div>
-                <div class="px-4 text-gray-700">
-                  <h3 class="text-sm tracking-wider">Total Sales</h3>
-                  <p class="text-3xl">39,265</p>
-                </div>
-              </div>
-              <div class="flex items-center bg-white border rounded-sm overflow-hidden shadow">
-                <div class="p-4 bg-indigo-400">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-12 w-12 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
-                    ></path>
-                  </svg>
-                </div>
-                <div class="px-4 text-gray-700">
-                  <h3 class="text-sm tracking-wider">Total Comment</h3>
-                  <p class="text-3xl">142,334</p>
-                </div>
-              </div>
-              <div class="flex items-center bg-white border rounded-sm overflow-hidden shadow">
-                <div class="p-4 bg-red-400">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-12 w-12 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
-                    ></path>
-                  </svg>
-                </div>
-                <div class="px-4 text-gray-700">
-                  <h3 class="text-sm tracking-wider">Server Load</h3>
-                  <p class="text-3xl">34.12%</p>
-                </div>
-              </div>
-            </div>
-            <Outlet />
-          </div>
+            {children}
         </div>
       </div>
       {/* <!-- Sidebar Backdrop --> */}

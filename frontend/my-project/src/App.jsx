@@ -6,6 +6,8 @@ import Register from "./pages/Register";
 import Sales from "./pages/Sales/Index";
 import Invoices from "./pages/Invoices/Index";
 
+import Orders from "./pages/Orders/Index";
+
 import Products from "./pages/Products/Index";
 import NewProduct from "./pages/Products/Create";
 
@@ -57,6 +59,9 @@ function App() {
 
       <Route path="/invoices" element={<Invoices />} />
       <Route path="/dashboard" element={<Dashboard />} />
+
+      <Route path="/orders" element={<Orders />} />
+      <Route path="/purchases" element={<Purchases />} />
     </Routes>
   );
 }

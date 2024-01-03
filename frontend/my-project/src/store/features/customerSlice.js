@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { BASE_URL } from "../../constants";
-import { build } from "vite";
+
 
 export const fetchCustomers = createAsyncThunk(
     'customers/fetchCustomers',
@@ -35,7 +35,7 @@ export const customerSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase()
+        // builder.addCase()
     }
 })
 

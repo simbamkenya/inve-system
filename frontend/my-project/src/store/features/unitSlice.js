@@ -15,7 +15,7 @@ const initialState = {
 export const unitSlice = createSlice({
     name: 'unit',
     initialState,
-    reducer: {
+    reducers: {
         addUnit: (state, action) => {
 
         },
@@ -27,7 +27,7 @@ export const unitSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase()
+        // builder.addCase()
     }
 })
 

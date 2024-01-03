@@ -4,7 +4,9 @@ import DashboardLayout from '../../layouts/DashboardLayout';
 function Index(props) {
     return (
         <DashboardLayout>
-            <h1>Purchases</h1>
+            <div>
+                <h1>Orders</h1>
+            </div>
         </DashboardLayout>
     );
 }

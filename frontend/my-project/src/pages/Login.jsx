@@ -1,8 +1,18 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Formik } from "formik";
+import { Link } from "react-router-dom";
+import Header from "../components/Header";
 
 function Login(props) {
+  const dispatch = useDispatch();
+
+  const handleChange = (field) => (event) => {
+    // dispatch(login());
+  };
+
   return (
-    <section class="bg-gray-50">
+    <section class="bg-gray-50 min-h-screen">
       <div class="px-4 py-20 mx-auto max-w-7xl">
         <a
           href="/"
@@ -36,48 +46,81 @@ function Login(props) {
           <h1 class="mb-5 text-xl font-light text-left text-gray-800 sm:text-center">
             Log in to your account
           </h1>
-          <form class="pb-1 space-y-4">
-            <label class="block">
-              <span class="block mb-1 text-xs font-medium text-gray-700">
-                Your Email
-              </span>
-              <input
-                class="form-input"
-                type="email"
-                placeholder="Ex. james@bond.com"
-                inputmode="email"
-                required
-              />
-            </label>
-            <label class="block">
-              <span class="block mb-1 text-xs font-medium text-gray-700">
-                Your Password
-              </span>
-              <input
-                class="form-input"
-                type="password"
-                placeholder="••••••••"
-                required
-              />
-            </label>
-            <div class="flex items-center justify-between">
-              <label class="flex items-center">
-                <input type="checkbox" class="form-checkbox" />
-                <span class="block ml-2 text-xs font-medium text-gray-700 cursor-pointer">
-                  Remember me
-                </span>
-              </label>
-              <input type="submit" class="btn btn-primary" value="Login" />
-            </div>
-          </form>
+          <Formik
+            initialValues={{ email: "", password: "" }}
+            validate={(values) => {
+              const errors = {};
+              if (!values.email) {
+                errors.name = "Required!";
+              }
+              return errors;
+            }}
+            onSubmit={(values, { setSubmitting }) => {
+              console.log("logging in");
+            }}
+          >
+            {({
+              values,
+              errors,
+              touched,
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              isSubmitting,
+            }) => (
+              <form class="pb-1 space-y-4" onSubmit={handleSubmit}>
+                {console.log(values)}
+                <label class="block">
+                  <span class="block mb-1 text-xs font-medium text-gray-700">
+                    Your Email
+                  </span>
+                  <input
+                    class="form-input"
+                    type="email"
+                    placeholder="Ex. james@bond.com"
+                    inputMode="email"
+                    id="email"
+                    required
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.email}
+                  />
+                </label>
+                <label class="block">
+                  <span class="block mb-1 text-xs font-medium text-gray-700">
+                    Your Password
+                  </span>
+                  <input
+                    class="form-input"
+                    type="password"
+                    placeholder="••••••••"
+                    required
+                    name="password"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.password}
+                  />
+                </label>
+                <div class="flex items-center justify-between">
+                  <label class="flex items-center">
+                    <input type="checkbox" class="form-checkbox" />
+                    <span class="block ml-2 text-xs font-medium text-gray-700 cursor-pointer">
+                      Remember me
+                    </span>
+                  </label>
+                  <input type="submit" class="btn btn-primary" value="Login" />
+                </div>
+              </form>
+            )}
+          </Formik>
         </div>
         <p class="mb-4 space-y-2 text-sm text-left text-gray-600 sm:text-center sm:space-y-0">
-          <a href="#" class="w-full btn btn-sm btn-link sm:w-auto">
+          <Link to="#" class="w-full btn btn-sm btn-link sm:w-auto">
             Forgot password
-          </a>
-          <a href="#" class="w-full btn btn-sm btn-link sm:w-auto">
+          </Link>
+          <Link to="/register" class="w-full btn btn-sm btn-link sm:w-auto">
             Create an account
-          </a>
+          </Link>
         </p>
       </div>
     </section>
