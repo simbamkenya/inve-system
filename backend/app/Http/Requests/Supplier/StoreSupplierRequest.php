@@ -29,7 +29,10 @@ class StoreSupplierRequest extends FormRequest
             'photo' => 'image|file|max:1024',
             'address' => 'required|string|max:100',
             'type' => 'required|string|max:25',
-            'shopname' => 'required|string|max:50'
+            'shopname' => 'required|string|max:50',
+            'account_holder' => 'max:50',
+            'account_number' => 'max:25',
+            'bank_name' => 'max:25',
         ];
     }
 }

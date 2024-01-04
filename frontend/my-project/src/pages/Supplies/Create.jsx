@@ -14,6 +14,9 @@ function Create(props) {
           type: "",
           phone: "",
           photo: "",
+          account_holder: "",
+          account_number: "",
+          bank_name: "",
         }}
         validate={(values) => {
           const errors = {};
@@ -33,7 +36,7 @@ function Create(props) {
           handleSubmit,
           isSubmitting,
         }) => (
-          <form onSubmit={handleSubmit} >
+          <form onSubmit={handleSubmit}>
             <div className="p-4 bg-white rounded shadow-sm">
               <div className="md:flex mb-6 px-3">
                 <div className="md:w-1/2 px-3 mb-6 md:mb-0">
@@ -124,6 +127,67 @@ function Create(props) {
                   />
                 </div>
               </div>
+
+              <div className="md:flex mb-6 px-3">
+                <div className="md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block text-sm mb-1" for="account_holder">
+                    Account Holder
+                  </label>
+
+                  <input
+                    class="form-input"
+                    placeholder="account_holder"
+                    id="account_holder"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.account_holder}
+                  />
+                </div>
+                <div className="md:w-1/2 px-3">
+                  <label class="block text-sm mb-1" for="account_number">
+                    Account Number
+                  </label>
+                  <input
+                    class="form-input"
+                    placeholder="Account Number"
+                    id="account_number"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.account_number}
+                  />
+                </div>
+              </div>
+
+              <div className="md:flex mb-6 px-3">
+                <div className="md:w-1/2 px-3 mb-6 md:mb-0">
+                  <label class="block text-sm mb-1" for="bank_name">
+                    Bank Name
+                  </label>
+
+                  <input
+                    class="form-input"
+                    placeholder="bank_name"
+                    id="bank_name"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.bank_name}
+                  />
+                </div>
+                <div className="md:w-1/2 px-3">
+                  {/* <label class="block text-sm mb-1" for="address">
+                    Address
+                  </label>
+                  <input
+                    class="form-input"
+                    placeholder="address"
+                    id="address"
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    value={values.address}
+                  /> */}
+                </div>
+              </div>
+
               <div className="px-6">
                 <button type="submit" class="btn btn-primary">
                   Save

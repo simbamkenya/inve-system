@@ -22,6 +22,9 @@ class CustomerFactory extends Factory
             'email' => fake()->unique()->safeEmail(),
             'phone' => fake()->unique()->phoneNumber(),
             'address' => fake()->address(),
+            'account_holder' => fake()->name(),
+            'account_number' => fake()->randomNumber(8, true),
+            'bank_name'  => fake()->randomElement(['Equity', 'KCB', 'NCBA', 'Family'])
         ];
     }
 }

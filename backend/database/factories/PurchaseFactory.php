@@ -25,7 +25,6 @@ class PurchaseFactory extends Factory
             'quantity_alert' => fake()->randomElement([5,10,15]),
             'status' => fake()->randomNumber([0,1]),
             'total_amount' => fake()->randomNumber(2),
-            'purchase_no' => fake()->randomNumber([1,2,3,4,5]),
             'created_by' => fake()->randomElement([1,2,3])
         ];
     }

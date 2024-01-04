@@ -20,7 +20,10 @@ class Supplier extends Model
         'phone',
         'address',
         'type',
-        'shop_name'
+        'shop_name',
+        'account_holder',
+        'account_number',
+        'bank_name',
     ];
 
     protected $casts = [

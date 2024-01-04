@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateUserRequest extends FormRequest
 {
@@ -23,6 +24,15 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             //
+            'name' => 'required|max:50',
+            'photo' => 'image|file|max:1024',
+            'email' => [
+                'required',
+                'email',
+                'max:50',
+                Rule::unique('users', 'email')->ignore($this->user)
+            ],
+
         ];
     }
 }

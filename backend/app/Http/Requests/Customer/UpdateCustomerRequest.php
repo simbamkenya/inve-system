@@ -50,7 +50,16 @@ class UpdateCustomerRequest extends FormRequest
                 'image',
                 'file',
                 'max:1024'
-            ]
+            ],
+            'account_holder' => [
+                'max:50'
+            ],
+            'account_number' => [
+                'max:25'
+            ],
+            'bank_name' => [
+                'max:25'
+            ],
 
         ];
     }

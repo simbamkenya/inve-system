@@ -32,11 +32,11 @@ function Create(props) {
               <input class="form-input" placeholder="address" id="address" />
             </div>
             <div className="md:w-1/2 px-3">
-              <label class="block text-sm mb-1" for="quantity">
-                Quantity
+              <label class="block text-sm mb-1" for="phone">
+                Phone
               </label>
 
-              <input class="form-input" placeholder="quantity" id="quantity" />
+              <input class="form-input" placeholder="phone number" id="phone" />
             </div>
           </div>
 

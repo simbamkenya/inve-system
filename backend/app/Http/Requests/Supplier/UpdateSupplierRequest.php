@@ -33,13 +33,13 @@ class UpdateSupplierRequest extends FormRequest
                 'required',
                 'email',
                 'max:50',
-                Rule::unique('suppliers','email')->ignore($this->email)
+                Rule::unique('suppliers', 'email')->ignore($this->email)
             ],
             'phone' => [
                 'required',
                 'string',
                 'max:25',
-                Rule::unique('suppliers','phone')->ignore($this->phone)
+                Rule::unique('suppliers', 'phone')->ignore($this->phone)
             ],
             'photo' => [
                 'image',
@@ -60,6 +60,15 @@ class UpdateSupplierRequest extends FormRequest
                 'required',
                 'string',
                 'max:50'
+            ],
+            'account_holder' => [
+                'max:50'
+            ],
+            'account_number' => [
+                'max:25'
+            ],
+            'bank_name' => [
+                'max:25'
             ],
         ];
     }

@@ -19,7 +19,6 @@ class ProductFactory extends Factory
         return [
             //
             'name' => fake()->word(),
-            'quantity' => fake()->randomNumber(2),
             'slug' => fake()->word(),
             'quantity' => fake()->randomNumber(2),
             'quantity_alert' => fake()->randomNumber([5,10,15]),

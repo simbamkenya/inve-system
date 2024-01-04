@@ -28,6 +28,9 @@ class StoreCustomerRequest extends FormRequest
             'phone' => 'required|string|max:25|unique:customers,phone',
             'address' => 'required|string|max:100',
             'photo' => 'image|file|max:1024',
+            'account_holder' => 'max:50',
+            'account_number' => 'max:25',
+            'bank_name' => 'max:25',
         ];
     }
 }
