@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
 
-class ProductsController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,12 +12,15 @@ class ProductsController extends Controller
     public function index()
     {
         //
-        $products = Product::all();
+        
+    }
 
-        return response()->json([
-            'status' => 'success',
-            'products' => $products
-        ], 200);
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -32,10 +34,17 @@ class ProductsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function show(string $id)
     {
         //
-        return response()->json(['status' => 'success', 'product' => $product], 200);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
     }
 
     /**
@@ -49,14 +58,8 @@ class ProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(string $id)
     {
         //
-        $product->delete();
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'product deleted successfully!'
-        ]);
     }
 }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\Category\UpdateCategoryRequest;
 
 class CategoriesController extends Controller
 {
@@ -19,14 +21,23 @@ class CategoriesController extends Controller
             'status' => 'success',
             'categories' => $categories
         ], 200);
-}
+    }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
         //
+        $request->validated();
+        $categories = $request->all();
+        Category::create($categories);
+
+        return response()->json([
+            'status' => 'success',
+            'category' => $categories
+        ], 200);
+
     }
 
     /**
@@ -44,9 +55,16 @@ class CategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
         //
+        $request->validated();
+        $category->update($request->all());
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'category was updated successfully'
+        ], 200);
     }
 
     /**
@@ -56,7 +74,7 @@ class CategoriesController extends Controller
     {
         //
         $category->delete();
-        
+
         return response()->json([
             'status' => 'success',
             'message' => 'category was deleted successfully!'
