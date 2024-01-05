@@ -20,7 +20,7 @@ class Supplier extends Model
         'phone',
         'address',
         'type',
-        'shop_name',
+        'shopname',
         'account_holder',
         'account_number',
         'bank_name',
