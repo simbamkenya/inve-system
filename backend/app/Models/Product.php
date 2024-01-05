@@ -18,7 +18,7 @@ class Product extends Model
         'name',
         'quantity',
         'slug',
-        'description',
+        'note',
         'code',
         'quantity',
         'quantity_alert',

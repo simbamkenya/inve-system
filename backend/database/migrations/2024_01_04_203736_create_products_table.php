@@ -24,6 +24,9 @@ return new class extends Migration
             $table->text('note')->nullable()->nullable();
             $table->string('product_image')->nullable();
 
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('unit_id')->constrained()->cascadeOnDelete();
+
         });
     }
 

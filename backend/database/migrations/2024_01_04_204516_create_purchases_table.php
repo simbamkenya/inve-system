@@ -20,9 +20,7 @@ return new class extends Migration
             $table->string('purchase_no');
             $table->string('purchase_date');
 
-            $table->string('purchase_no');
             $table->tinyInteger('status')->default(0);
-
             $table->integer('total_amount');
 
             $table->foreignIdFor(User::class, 'created_by');
