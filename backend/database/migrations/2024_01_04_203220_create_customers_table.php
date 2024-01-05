@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('customers', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             //
             $table->id();
             $table->string('name')->nullable();
@@ -21,7 +21,6 @@ return new class extends Migration
             $table->string('photo')->nullable();
             $table->string('account_holder')->nullable();
             $table->string('bank_name')->nullable();
-            $table->string('account_holder')->nullable();
         });
     }
 
