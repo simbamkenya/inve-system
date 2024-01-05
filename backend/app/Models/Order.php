@@ -29,7 +29,7 @@ class Order extends Model
         'due',
         'payment_type'
     ];
-    
+
 
     protected $casts = [
         'order_date'    => 'date',

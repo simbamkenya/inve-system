@@ -15,7 +15,8 @@ class Category extends Model
         'short_code'
     ];
 
-    public function products() {
+    public function products()
+    {
         return $this->hasMany(Product::class, 'category_id', 'id');
     }
 }

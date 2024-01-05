@@ -31,9 +31,8 @@ class Supplier extends Model
         'updated_at' => 'datetime',
     ];
 
-    public function purchases(){
+    public function purchases()
+    {
         return $this->hasMany(Purchase::class);
     }
-
 }
-

@@ -29,19 +29,23 @@ class Purchase extends Model
         'date' => 'date'
     ];
 
-    public function supplier(){
+    public function supplier()
+    {
         return $this->belongsTo(Supplier::class, 'supplier_id', 'id');
     }
 
-    public function createdBy(){
+    public function createdBy()
+    {
         return $this->belongsTo(User::class, 'created_by', 'id');
     }
 
-    public function updatedBy(){
+    public function updatedBy()
+    {
         return $this->belongsTo(User::class, 'updated_by', 'id');
     }
 
-    public function details(){
+    public function details()
+    {
         return $this->hasMany(PurchaseDetails::class);
     }
 }
