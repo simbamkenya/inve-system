@@ -24,7 +24,7 @@ class ProductFactory extends Factory
             'quantity_alert' => fake()->randomNumber([5,10,15]),
             'selling_price' => fake()->randomNumber(2),
             'buying_price' => fake()->randomNumber(2),
-            'category_id' => fake()->randomNumber([1, 2, 3, 4, 5]),
+            'category_id' => fake()->randomElement([1, 2, 3, 4, 5]),
             'unit_id' => fake()->randomElement([1, 2, 3]),
         ];
     }

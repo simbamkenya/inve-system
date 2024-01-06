@@ -24,8 +24,13 @@ return new class extends Migration
             $table->text('note')->nullable()->nullable();
             $table->string('product_image')->nullable();
 
-            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('unit_id')->constrained()->cascadeOnDelete();
+            // $table->foreignId('category_id')->references('id')->constrained()->cascadeOnDelete();
+            $table->foreignId('category_id')->nullable()->constrained('categories')->cascadeOnDelete();
+            $table->foreignId('unit_id')->nullable()->constrained('units')->cascadeOnDelete();
+           // $table->foreignId('unit_id')->constrained()->cascadeOnDelete();
+            
+
+            $table->timestamps();
 
         });
     }

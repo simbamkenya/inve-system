@@ -16,11 +16,11 @@ class ProductsController extends Controller
     public function index()
     {
         //
-        // $products = Product::all();
-        $products = Product::select('id', 'name')
-            ->limit(1)
-            ->get();
-
+        $products = Product::all();
+        // $products = Product::select('id', 'name')
+        //     ->limit(1)
+        //     ->get();
+       
         return response()->json([
             'status' => 'success',
             'products' => $products

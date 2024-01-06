@@ -5,8 +5,11 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\UnitsController;
+
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\Product\ProductExportController;
 use App\Http\Controllers\CustomersController;
+use App\Http\Controllers\Order\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +28,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::apiResource('/products', ProductsController::class);
+Route::get('/products/export', [ProductExportController::class, 'store']); 
+
 Route::apiResource('/customers', CustomersController::class);
 Route::apiResource('/units', UnitsController::class);
 Route::apiResource('/categories', CategoriesController::class);
+
+//orders 
+Route::apiResource('/orders', OrderController::class);
