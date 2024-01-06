@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import DashboardLayout from "../../layouts/DashboardLayout";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchUnits, deleteUnitById} from "../../store/features/UnitSlice";
+
 
 function Index(props) {
+  const dispatch = useDispatch();
+  const units = useSelector((state) => state.units.data);
+  console.log("units", units);
+
+  useEffect(() => {
+    dispatch(fetchUnits());
+  }, [units]);
+
   return (
     <DashboardLayout>
       <div className="mx-4">
@@ -18,7 +29,7 @@ function Index(props) {
               <thead class="border-b font-medium dark:border-neutral-500">
                 <tr>
                   <th scope="col" class="px-6 py-4">
-                    #
+                    #ID
                   </th>
                   <th scope="col" class="px-6 py-4">
                     Name
@@ -27,74 +38,36 @@ function Index(props) {
                     Slug
                   </th>
                   <th scope="col" class="px-6 py-4">
-                    Short Code
-                  </th>
-                  <th scope="col" class="px-6 py-4">
                     Actions
                   </th>
                 </tr>
               </thead>
               <tbody>
-                <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
-                  <td class="whitespace-nowrap px-6 py-4 font-medium">1</td>
-                  <td class="whitespace-nowrap px-6 py-4">Mark</td>
-                  <td class="whitespace-nowrap px-6 py-4">Otto</td>
-                  <td class="whitespace-nowrap px-6 py-4">450</td>
-                  <td>
-                    <button
-                      type="button"
-                      class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      type="button"
-                      class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-                <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
-                  <td class="whitespace-nowrap px-6 py-4 font-medium">2</td>
-                  <td class="whitespace-nowrap px-6 py-4">Jacob</td>
-                  <td class="whitespace-nowrap px-6 py-4">Thornton</td>
-                  <td class="whitespace-nowrap px-6 py-4">450</td>
-                  <td>
-                    <button
-                      type="button"
-                      class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      type="button"
-                      class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-                <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
-                  <td class="whitespace-nowrap px-6 py-4 font-medium">3</td>
-                  <td class="whitespace-nowrap px-6 py-4">Larry</td>
-                  <td class="whitespace-nowrap px-6 py-4">Wild</td>
-                  <td class="whitespace-nowrap px-6 py-4">450</td>
-                  <td>
-                    <button
-                      type="button"
-                      class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      type="button"
-                      class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
+                {units &&
+                  units.map((unit) => (
+                    <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
+                      <td class="whitespace-nowrap px-6 py-4 font-medium">
+                        {unit.id}
+                      </td>
+                      <td class="whitespace-nowrap px-6 py-4">{unit.name}</td>
+                      <td class="whitespace-nowrap px-6 py-4">{unit.slug}</td>
+                      <td>
+                        <button
+                          type="button"
+                          class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          type="button"
+                          class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                          onClick={() => dispatch(deleteUnitById(unit.id))}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>

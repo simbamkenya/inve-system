@@ -3,13 +3,34 @@ import axios from "axios";
 import { BASE_URL } from "../../constants";
 
 export const fetchUnits = createAsyncThunk(
-    'supppliers/fetchSuppliers',
+    'units/fetchUnits',
     async () => {
-        
-    })
+     try{
+       const res = await axios.get(`${BASE_URL}/api/units`).then((res) =>  res.data)
+       return res
+     } catch (error) {
+        console.log(error)
+     }
+    }
+)
+
+export const deleteUnitById = createAsyncThunk(
+    'units/deleteUnitById',
+    async (id) => {
+        try {
+           const res = axios.delete(`${BASE_URL}/api/units/${id}`).then((res) => res.data)
+           return id
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+)
 
 const initialState = {
-    'unit': 'kg'
+    data: [],
+    error: '',
+    loading: true
 }
 
 export const unitSlice = createSlice({
@@ -27,7 +48,18 @@ export const unitSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        // builder.addCase()
+     builder.addCase(fetchUnits.pending, (state, action) => {
+        state.loading = true
+     })
+     .addCase(fetchUnits.fulfilled, (state, action) => {
+        state.loading = false
+        console.log('a', action)
+        state.data = action.payload.units
+        
+     })
+     .addCase(fetchUnits.rejected, (state, action)=> {
+        state.loading = true
+     })
     }
 })
 

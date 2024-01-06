@@ -6,7 +6,7 @@ export const fetchCategories = createAsyncThunk(
     'category/fetchCategories',
     async () => {
      try{
-       const res = await axios.get(`${BASE_URL}/categories`).then((res) => res.data)
+       const res = await axios.get(`${BASE_URL}/api/categories`).then((res) => res.data)
        return res
      } catch (error) {
         console.log(error)
@@ -15,7 +15,9 @@ export const fetchCategories = createAsyncThunk(
 )
 
 const initialState = {
-    category : 'books'
+    data: [],
+    error: '',
+    loading: true
 }
 const categogrySlice = createSlice({
 name: 'category',

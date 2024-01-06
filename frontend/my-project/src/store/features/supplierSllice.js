@@ -5,8 +5,14 @@ import { BASE_URL } from "../../constants";
 export const fetchSuppliers = createAsyncThunk(
     'supppliers/fetchSuppliers',
     async () => {
-
+        try {
+          const res = axios.get(`${BASE_URL}/api/suppliers`).then(res => res.data)
+          return res
+        } catch (error){
+            console.log(error)
+        }
     }
+
 )
 
 const initialState = {

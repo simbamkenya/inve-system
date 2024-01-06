@@ -1,7 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import DashboardLayout from "../../layouts/DashboardLayout";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import {
+  fetchProducts,
+  deleteProductById,
+} from "../../store/features/productSlice";
+
 function Index(props) {
+  const dispatch = useDispatch();
+  const products = useSelector((state) => state.products.data);
+  console.log("products", products);
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [products]);
+
   return (
     <DashboardLayout>
       <div className="flex flex-col">
@@ -18,13 +33,13 @@ function Index(props) {
                 <thead className="border-b font-medium dark:border-neutral-500">
                   <tr>
                     <th scope="col" className="px-6 py-4">
-                      #
+                      #ID
                     </th>
                     <th scope="col" className="px-6 py-4">
                       Name
                     </th>
                     <th scope="col" class="px-6 py-4">
-                      Cateogory
+                      Category
                     </th>
                     <th scope="col" class="px-6 py-4">
                       Buying Price
@@ -41,72 +56,46 @@ function Index(props) {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
-                    <td class="whitespace-nowrap px-6 py-4 font-medium">1</td>
-                    <td class="whitespace-nowrap px-6 py-4">Mark</td>
-                    <td class="whitespace-nowrap px-6 py-4">Otto</td>
-                    <td class="whitespace-nowrap px-6 py-4">450</td>
-                    <td class="whitespace-nowrap px-6 py-4">500</td>
-                    <td class="whitespace-nowrap px-6 py-4">50</td>
-                    <td>
-                      <button
-                        type="button"
-                        class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                  {products &&
+                    products.map((product) => (
+                      <tr
+                        key={product.id}
+                        class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600"
                       >
-                        Edit
-                      </button>
-                      <button
-                        type="button"
-                        class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                  <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
-                    <td class="whitespace-nowrap px-6 py-4 font-medium">2</td>
-                    <td class="whitespace-nowrap px-6 py-4">Jacob</td>
-                    <td class="whitespace-nowrap px-6 py-4">Thornton</td>
-                    <td class="whitespace-nowrap px-6 py-4">450</td>
-                    <td class="whitespace-nowrap px-6 py-4">500</td>
-                    <td class="whitespace-nowrap px-6 py-4">50</td>
-                    <td>
-                      <button
-                        type="button"
-                        class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        type="button"
-                        class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                  <tr class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-600">
-                    <td class="whitespace-nowrap px-6 py-4 font-medium">3</td>
-                    <td class="whitespace-nowrap px-6 py-4">Larry</td>
-                    <td class="whitespace-nowrap px-6 py-4">Wild</td>
-                    <td class="whitespace-nowrap px-6 py-4">450</td>
-                    <td class="whitespace-nowrap px-6 py-4">500</td>
-                    <td class="whitespace-nowrap px-6 py-4">50</td>
-                    <td>
-                      <button
-                        type="button"
-                        class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        type="button"
-                        class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
+                        <td class="whitespace-nowrap px-6 py-4 font-medium">
+                          {product.id}
+                        </td>
+                        <td class="whitespace-nowrap px-6 py-4">
+                          {product.name}
+                        </td>
+                        <td class="whitespace-nowrap px-6 py-4">
+                          {product.category.name}
+                        </td>
+                        <td class="whitespace-nowrap px-6 py-4">
+                          {product.buying_price}
+                        </td>
+                        <td class="whitespace-nowrap px-6 py-4">
+                          {product.selling_price}
+                        </td>
+                        <td class="whitespace-nowrap px-6 py-4">
+                          {product.quantity}
+                        </td>
+                        <td>
+                          <button
+                            type="button"
+                            class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                            onClick={() => dispatch(deleteProductById(product.id))}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
             </div>

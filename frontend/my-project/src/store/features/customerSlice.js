@@ -7,7 +7,7 @@ export const fetchCustomers = createAsyncThunk(
     'customers/fetchCustomers',
     async () => {
         try {
-          const res = axios.get(`${BASE_URL}/customers`).then(res => res.data)
+          const res = axios.get(`${BASE_URL}/api/customers`).then(res => res.data)
           return res
         } catch (error){
             console.log(error)
@@ -17,7 +17,9 @@ export const fetchCustomers = createAsyncThunk(
 )
 
 const initialState = {
-    customer: 'customer1'
+    data: [],
+    error: '',
+    loading: true
 }
 
 export const customerSlice = createSlice({
@@ -35,7 +37,16 @@ export const customerSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        // builder.addCase()
+     builder.addCase(fetchCustomers.pending, (state, action) => {
+        state.status = "loading"
+     })
+     .addCase(fetchCustomers.fulfilled, (state, action) => {
+        state.status = "fulfilled"
+        
+     })
+     .addCase(fetchCustomers.rejected, (state, action) => {
+        state.status = "rejected"
+     })
     }
 })
 

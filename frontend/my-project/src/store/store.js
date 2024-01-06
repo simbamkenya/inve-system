@@ -8,10 +8,10 @@ import productReducer from "./features/productSlice";
 
 export const store = configureStore({
     reducer: {
-      category: categoryReducer,
-      unit: unitReducer,
-      supplier: supplierReducer,
-      customer: customerReducer,
-      product: productReducer
+      categories: categoryReducer,
+      units: unitReducer,
+      suppliers: supplierReducer,
+      customers: customerReducer,
+      products: productReducer
     }
 })
