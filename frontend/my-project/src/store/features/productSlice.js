@@ -15,7 +15,6 @@ export const fetchProducts = createAsyncThunk(
 
 )
 
-
 export const deleteProductById = createAsyncThunk(
     'products/deleteProductById',
     async (id) => {
@@ -29,6 +28,18 @@ export const deleteProductById = createAsyncThunk(
 
 )
 
+export const addProduct = createAsyncThunk(
+    'products/addProduct',
+    async (data) => {
+        try {
+            const res = axios.post(`${BASE_URL}/api/products`)
+            return res
+        } catch (error) {
+            console.log(error)
+        }
+    }
+)
+
 const initialState = {
     data: [],
     error: '',
@@ -39,9 +50,6 @@ export const productSlice = createSlice({
     name: 'product',
     initialState, 
     reducers: {
-       addProduct: (state, action) => {
-
-       },
        editProduct: (state, action) => {
 
        },
@@ -77,5 +85,5 @@ export const productSlice = createSlice({
     }
 })
 
-export const {addProduct, editProduct } = productSlice.actions;
+export const {editProduct } = productSlice.actions;
 export default productSlice.reducer;

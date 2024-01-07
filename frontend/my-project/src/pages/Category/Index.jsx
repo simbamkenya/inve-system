@@ -18,7 +18,7 @@ function Index(props) {
     <DashboardLayout>
       <div className="mx-4  rounded">
         <button class="rounded btn btn-primary mr-2">
-          <Link to="/categories/create">Add</Link>
+          <Link to="/categories/create">Add Category</Link>
         </button>
         <button class="rounded btn btn-primary">Export</button>
       </div>

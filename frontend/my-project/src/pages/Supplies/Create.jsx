@@ -2,8 +2,15 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Formik } from "formik";
 import DashboardLayout from "../../layouts/DashboardLayout";
+import { useDispatch } from "react-redux";
+import { addSupplier } from "../../store/features/supplierSllice";
 
 function Create(props) {
+  const dispatch = useDispatch();
+
+  const handleSupplierSubmission = (values, { setSubmitting }) => {
+    dispatch(addSupplier(values));
+  };
   return (
     <DashboardLayout>
       <Formik
@@ -25,7 +32,7 @@ function Create(props) {
           }
           return errors;
         }}
-        onSubmit={(values, { setSubmitting }) => {}}
+        onSubmit={handleSupplierSubmission}
       >
         {({
           values,

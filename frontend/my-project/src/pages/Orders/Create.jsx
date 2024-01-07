@@ -1,29 +1,31 @@
 import React from "react";
-import { Form, Link } from "react-router-dom";
 import { Formik } from "formik";
+import { useDispatch, useSelector } from "react-redux";
+import { addOrder } from "../../store/features/orderSlice";
 import DashboardLayout from "../../layouts/DashboardLayout";
-import { addCategory } from "../../store/features/categorySlice";
-import { useDispatch } from "react-redux";
 
 function Create(props) {
   const dispatch = useDispatch();
 
-  const handleCategorySubmission = (values, { setSubmitting }) => {
-    dispatch(addCategory(values));
+  const handleOrderSubmission = (values, { setSubmitting }) => {
+    dispatch(addOrder(values));
   };
 
   return (
     <DashboardLayout>
       <Formik
-        initialValues={{ name: "", short_code: "" }}
+        initialValues={{
+          name: "",
+          quantity: "",
+        }}
         validate={(values) => {
           const errors = {};
-          if (!values.email) {
+          if (!values.quantity) {
             errors.name = "Required!";
           }
           return errors;
         }}
-        onSubmit={handleCategorySubmission}
+        onSubmit={handleOrderSubmission}
       >
         {({
           values,
@@ -34,14 +36,13 @@ function Create(props) {
           handleSubmit,
           isSubmitting,
         }) => (
-          <form className="p-4" onSubmit={handleSubmit}>
+          <form className="md:flex flex-col mb-6" onSubmit={handleSubmit}>
             {console.log(values)}
             <div className="md:flex mb-6">
               <div className="md:w-1/2 px-3 mb-6 md:mb-0">
                 <label class="block text-sm mb-1" for="name">
                   Name
                 </label>
-                {/* {errors.name && touched.name && errors.name} */}
                 <input
                   class="form-input"
                   placeholder="name"
@@ -51,18 +52,17 @@ function Create(props) {
                   value={values.name}
                 />
               </div>
-
               <div className="md:w-1/2 px-3">
-                <label class="block text-sm mb-1" for="short_code">
-                  Short_code
+                <label class="block text-sm mb-1" for="quantity">
+                  Quantity
                 </label>
                 <input
                   class="form-input"
-                  placeholder="short code"
-                  id="short_code"
+                  placeholder="Praveen Juge"
+                  id="quantity"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.short_code}
+                  value={values.quantity}
                 />
               </div>
             </div>

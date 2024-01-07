@@ -1,14 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import DashboardLayout from "../../layouts/DashboardLayout";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  deleteCategoryById,
+  fetchCategories,
+} from "../../store/features/categorySlice";
 
 function Index(props) {
+  const customers = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [customers]);
+
+  const handleCustomerDeletion = (id) => dispatch(deleteCategoryById(id));
+
   return (
     <DashboardLayout>
       <div class="flex flex-col">
         <div className="mx-4 rounded">
           <button class="rounded btn btn-primary mr-2 px-2">
-            <Link to="/customers/create">Add</Link>
+            <Link to="/customers/create">Add Customer</Link>
           </button>
           <button class="rounded btn btn-primary">Export</button>
         </div>

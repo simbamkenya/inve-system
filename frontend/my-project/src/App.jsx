@@ -7,6 +7,7 @@ import Sales from "./pages/Sales/Index";
 import Invoices from "./pages/Invoices/Index";
 
 import Orders from "./pages/Orders/Index";
+import NewOrder from "./pages/Orders/Create";
 
 import Products from "./pages/Products/Index";
 import NewProduct from "./pages/Products/Create";
@@ -61,7 +62,10 @@ function App() {
       <Route path="/dashboard" element={<Dashboard />} />
 
       <Route path="/orders" element={<Orders />} />
+      <Route path="/orders/create" element={<NewOrder />} />
+
       <Route path="/purchases" element={<Purchases />} />
+      <Route path="/purchases/create" element={<NewPurchase />} />
     </Routes>
   );
 }

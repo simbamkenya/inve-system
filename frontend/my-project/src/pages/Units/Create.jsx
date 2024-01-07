@@ -1,15 +1,23 @@
 import React from "react";
 import { Formik } from "formik";
 import DashboardLayout from "../../layouts/DashboardLayout";
+import { useDispatch } from "react-redux";
+import { addSupplier } from "../../store/features/supplierSllice";
 
 function Create(props) {
+  const dispatch = useDispatch();
+
+  const handleUnitSubmission = (values, { setSubmitting }) => {
+    dispatch(addSupplier(values));
+  };
+
   return (
     <DashboardLayout>
       <Formik
         initialValues={{
           name: "",
           short_code: "",
-          slug: ""
+          slug: "",
         }}
         validate={(values) => {
           const errors = {};
@@ -18,7 +26,7 @@ function Create(props) {
           }
           return errors;
         }}
-        onSubmit={(values, { setSubmitting }) => {}}
+        onSubmit={handleUnitSubmission}
       >
         {({
           values,
@@ -29,25 +37,36 @@ function Create(props) {
           handleSubmit,
           isSubmitting,
         }) => (
-          <form className="p-4 bg-white rounded shadow-sm" onSubmit={handleSubmit}>
+          <form
+            className="p-4 bg-white rounded shadow-sm"
+            onSubmit={handleSubmit}
+          >
             <div className="md:flex mb-6 px-3">
               <div className="md:w-1/2 px-3 mb-6 md:mb-0">
                 <label class="block text-sm mb-1" for="name">
                   Name
                 </label>
-                <input class="form-input" placeholder="name" id="name" 
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.name}
+                <input
+                  class="form-input"
+                  placeholder="name"
+                  id="name"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.name}
                 />
               </div>
               <div className="md:w-1/2 px-3">
                 <label class="block text-sm mb-1" for="slug">
                   slug
                 </label>
-                <input class="form-input" placeholder="slug" id="slug"onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.slug} />
+                <input
+                  class="form-input"
+                  placeholder="slug"
+                  id="slug"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.slug}
+                />
               </div>
             </div>
 
@@ -62,8 +81,8 @@ function Create(props) {
                   placeholder="short code"
                   id="short_code"
                   onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.short_code}
+                  onBlur={handleBlur}
+                  value={values.short_code}
                 />
               </div>
               {/* <div className="md:w-1/2 px-3">

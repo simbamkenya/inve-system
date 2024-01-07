@@ -1,8 +1,15 @@
 import React from "react";
 import { Formik } from "formik";
 import DashboardLayout from "../../layouts/DashboardLayout";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../store/features/productSlice";
 
 function Create(props) {
+  const dispatch = useDispatch();
+
+  const handleProductSubmission = (values, { setSubmitting }) => {
+    dispatch(addProduct(values));
+  };
   return (
     <DashboardLayout>
       <div className="p-4 bg-white rounded shadow-sm">
@@ -44,7 +51,7 @@ function Create(props) {
             }
             return errors;
           }}
-          onSubmit={(values, { setSubmitting }) => {}}
+          onSubmit={handleProductSubmission}
         >
           {({
             values,

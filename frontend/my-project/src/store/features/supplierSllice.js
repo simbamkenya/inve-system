@@ -12,11 +12,37 @@ export const fetchSuppliers = createAsyncThunk(
             console.log(error)
         }
     }
+)
+
+export const addSupplier = createAsyncThunk(
+    'supppliers/addSupplier',
+    async (data) => {
+        try {
+          const res = axios.post(`${BASE_URL}/api/suppliers`).then(res => res.data)
+          return res
+        } catch (error){
+            console.log(error)
+        }
+    }
+)
+
+export const deleteSupplierById = createAsyncThunk(
+    'categories/deleteSupplierById',
+    async (id) => {
+        try {
+           const res = axios.delete(`${BASE_URL}/api/suppliers/${id}`).then((res) => res.data)
+           return id
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
 )
 
 const initialState = {
-    supplier: 'kim supplier'
+    data: [],
+    error: '',
+    loading: true
 }
 
 export const supplierSlice = createSlice({
@@ -32,9 +58,20 @@ export const supplierSlice = createSlice({
         deleteSupplier: (state, action) => {
 
         }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(fetchSuppliers.pending, (state, action) => {
+            state.loading = true
+        })
+        .addCase(fetchSuppliers.fulfilled, (state, action) => {
+            state.data = action.payload.suppliers
+        })
+        .addCase(fetchSuppliers.rejected, (state, action) => {
+            state.loading = true
+        })
     }
 
 })
 
-export const { addSupplier, editSupplier, deleteSupplier} = supplierSlice.actions;
+export const { editSupplier} = supplierSlice.actions;
 export default supplierSlice.reducer;

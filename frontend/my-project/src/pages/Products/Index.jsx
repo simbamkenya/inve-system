@@ -22,7 +22,7 @@ function Index(props) {
       <div className="flex flex-col">
         <div className="mx-4">
           <button className="rounded btn btn-primary mr-2">
-            <Link to="/products/create">Add</Link>
+            <Link to="/products/create">Add Product</Link>
           </button>
           <button className="rounded btn btn-primary">Export</button>
         </div>

@@ -13,18 +13,31 @@ export const fetchUsers = createAsyncThunk(
      }
     }
 )
+export const deleteUserById = createAsyncThunk(
+    'users/deleteUsertById',
+    async (id) => {
+        try {
+           const res = axios.delete(`${BASE_URL}/api/users/${id}`).then((res) => res.data)
+           return id
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+)
 
 export const register = createAsyncThunk(
     "users/register",
     async () => {
-
+        const res = axios.post(`${BASE_URL}/api/users/register`).then((res) => res.data)
+        return res
     }
 )
 
 export const login = createAsyncThunk(
     "users/login",
     async () => {
-
+        const res = axios.delete(`${BASE_URL}/api/users/login`).then((res) => res.data)
     }
 )
 
@@ -43,7 +56,15 @@ export const userSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase()
+        builder.addCase(fetchUsers.pending, (state, action) => {
+            state.loading = true
+        })
+        .addCase(fetchUsers.fulfilled, (state, action) => {
+
+        })
+        .addCase(fetchUsers.rejected, (state, action) => {
+            state.loading = true
+        })
     }
 })
 

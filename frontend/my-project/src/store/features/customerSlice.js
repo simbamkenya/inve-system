@@ -16,6 +16,31 @@ export const fetchCustomers = createAsyncThunk(
 
 )
 
+
+export const deleteCustomerById = createAsyncThunk(
+    'products/deleteCustomerById',
+    async (id) => {
+        try {
+           const res = axios.delete(`${BASE_URL}/api/customers/${id}`).then((res) => res.data)
+           return id
+        } catch (error) {
+            console.log(error)
+        }
+    }
+)
+
+export const addCustomer = createAsyncThunk(
+    'customers/addCustomer',
+    async (data) => {
+        try {
+           const res = axios.post(`${BASE_URL}/api/customers`).then((res) => res.data)
+           return res
+        } catch (error) {
+            console.log(error)
+        }
+    }
+)
+
 const initialState = {
     data: [],
     error: '',
@@ -26,29 +51,23 @@ export const customerSlice = createSlice({
     name: 'customer',
     initialState,
     reducers: {
-        addCustomer: (state, action) => {
-
-        },
-        deleteCustomer: (state, action) => {
-
-        },
         editCustomer: (state, action) => {
-
         }
     },
     extraReducers: (builder) => {
      builder.addCase(fetchCustomers.pending, (state, action) => {
-        state.status = "loading"
+        state.loading = true
      })
      .addCase(fetchCustomers.fulfilled, (state, action) => {
-        state.status = "fulfilled"
+        state.loading = false
+        state.data = action.payload.customers
         
      })
      .addCase(fetchCustomers.rejected, (state, action) => {
-        state.status = "rejected"
+        state.loading = true
      })
     }
 })
 
-export const { addCustomer, editCustomer, deleteCustomer } = customerSlice.actions;
+export const { editCustomer } = customerSlice.actions;
 export default customerSlice.reducer;
